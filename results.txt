@@ -1,0 +1,24 @@
+Tested:4
+Predicted: 3
+Successful predictions: 75.0%
+----------
+Test number: 1
+Expected: R
+Predicted: R
+SUCCESS!
+----------
+Test number: 2
+Expected: R
+Predicted: R
+SUCCESS!
+----------
+Test number: 3
+Expected: W
+Predicted: W
+SUCCESS!
+----------
+Test number: 4
+Expected: D
+Predicted: W
+FAIL!
+----------
