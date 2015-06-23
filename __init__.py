@@ -40,7 +40,6 @@ def main(argv):
     inputs_number = 98
 
     try:
-        # _ was args
         opts, _ = getopt.getopt(
             argv,
             "dhno:p:s:t:",
@@ -65,8 +64,6 @@ def main(argv):
             seed = int(hashlib.sha1(arg).hexdigest(), 16) % 4294967295
         elif opt in ('-t', "--tests"):
             tests_file = arg
-
-    # source = "".join(args)
 
     HopfieldNetwork(inputs_number, patterns_file, tests_file, out, debug, save_res, seed)
 

@@ -12,13 +12,31 @@ def vector_to_answer(vector):
 
     answer_id = 14
     if sum(vector) == -12:
-        for i in range(len(vector)):
+        for i in range(14):
             if vector[i] == 1:
                 if answer_id != 14:
                     answer_id = 14
                     break
                 answer_id = i
     return letter(answer_id)
+
+def letter_to_number(letter):
+    return {
+        'A': 0,
+        'C': 1,
+        'D': 2,
+        'G': 3,
+        'H': 4,
+        'I': 5,
+        'K': 6,
+        'M': 7,
+        'Q': 8,
+        'R': 9,
+        'S': 10,
+        'U': 11,
+        'W': 12,
+        'X': 13,
+    }[letter]
 
 
 class HopfieldNetwork(object):
@@ -74,30 +92,10 @@ class HopfieldNetwork(object):
         """ Opening a file specified by a path. """
 
         def letter_2_vector(char):
-
-            def index(index):
-                return {
-                    'A': 0,
-                    'C': 1,
-                    'D': 2,
-                    'G': 3,
-                    'H': 4,
-                    'I': 5,
-                    'K': 6,
-                    'M': 7,
-                    'Q': 8,
-                    'R': 9,
-                    'S': 10,
-                    'U': 11,
-                    'W': 12,
-                    'X': 13,
-                }[index]
-
             vector = []
             if char != '\n':
-                vector = [-1 for i in range(self.inputs_number / 7)]
-                vector[index(char)] = 1
-                # vector += index(char)
+                vector = [-1 for _ in range(14)]
+                vector[letter_to_number(char)] = 1
             return vector
 
         patterns = []
@@ -115,35 +113,12 @@ class HopfieldNetwork(object):
         """ Opening a file specified by a path. """
 
         def letter_2_vector(char):
-
-            def index(index):
-                return {
-                    'A': 0,
-                    'C': 1,
-                    'D': 2,
-                    'G': 3,
-                    'H': 4,
-                    'I': 5,
-                    'K': 6,
-                    'M': 7,
-                    'Q': 8,
-                    'R': 9,
-                    'S': 10,
-                    'U': 11,
-                    'W': 12,
-                    'X': 13,
-                }[index]
-
             vector = []
             if char == 'N':
-                return [-1 for i in range(self.inputs_number / 7)]
-                # return [0 for i in range(self.inputs_number / 7)]
-                # return [1 for i in range(self.inputs_number / 7)]
-                # return self.initialize_weights(self.inputs_number / 7)
+                return [-1 for _ in range(14)]
             if char != '\n':
-                vector = [-1 for i in range(self.inputs_number / 7)]
-                vector[index(char)] = 1
-                # vector += index(char)
+                vector = [-1 for _ in range(14)]
+                vector[letter_to_number(char)] = 1
             return vector
 
         tests = []
@@ -247,13 +222,8 @@ class HopfieldNetwork(object):
                 print (vector_to_answer(test[0][42:56]) + " " +
                        vector_to_answer(test[0][56:70]) + " " +
                        vector_to_answer(test[0][70:84]))
-                nex = ""
-                npr = ""
-                # if self.debug:
-                #     nex = str(test[1])
-                #     npr = str(neural_output[84:len(neural_output)])
-                print "Expected:  " + expected + " " + nex
-                print "Predicted: " + predicted_letter + " " + npr
+                print "Expected:  " + expected
+                print "Predicted: " + predicted_letter
                 if expected == predicted_letter:
                     print "SUCCESS!\n"
                 else:
