@@ -7,24 +7,25 @@ import numpy as np
 
 def vector_to_answer(vector):
 
-    def vec_to_num(ivector):
-        ret_sum = 0
-        for i in range(len(ivector)):
-            if ivector[i] == 1:
-                ret_sum += ivector[i]*2**(len(ivector) - i - 1)
-        return ret_sum
-
     def letter(index):
-        return "NACDGHIKMQRSUWXN"[index]
+        return "ACDGHIKMQRSUWXN"[index]
 
-    return letter(vec_to_num(vector))
+    answer_id = 14
+    if sum(vector) == -12:
+        for i in range(len(vector)):
+            if vector[i] == 1:
+                if answer_id != 14:
+                    answer_id = 14
+                    break
+                answer_id = i
+    return letter(answer_id)
 
 
 class HopfieldNetwork(object):
 
 
     def __init__(self,
-                 inputs_number=28,
+                 inputs_number=98,
                  patterns_file="patternsT.pat",
                  tests_file="testsT.tst",
                  out="results.txt",
@@ -76,27 +77,27 @@ class HopfieldNetwork(object):
 
             def index(index):
                 return {
-                    'A': [-1, -1, -1, 1],
-                    'C': [-1, -1, 1, -1],
-                    'D': [-1, -1, 1, 1],
-                    'G': [-1, 1, -1, -1],
-                    'H': [-1, 1, -1, 1],
-                    'I': [-1, 1, 1, -1],
-                    'K': [-1, 1, 1, 1],
-                    'M': [1, -1, -1, -1],
-                    'Q': [1, -1, -1, 1],
-                    'R': [1, -1, 1, -1],
-                    'S': [1, -1, 1, 1],
-                    'U': [1, 1, -1, -1],
-                    'W': [1, 1, -1, 1],
-                    'X': [1, 1, 1, -1],
+                    'A': 0,
+                    'C': 1,
+                    'D': 2,
+                    'G': 3,
+                    'H': 4,
+                    'I': 5,
+                    'K': 6,
+                    'M': 7,
+                    'Q': 8,
+                    'R': 9,
+                    'S': 10,
+                    'U': 11,
+                    'W': 12,
+                    'X': 13,
                 }[index]
 
             vector = []
             if char != '\n':
-                # vector = [-1 for i in range(self.inputs_number / 7)]
-                # vector[index(char)] = 1
-                vector += index(char)
+                vector = [-1 for i in range(self.inputs_number / 7)]
+                vector[index(char)] = 1
+                # vector += index(char)
             return vector
 
         patterns = []
@@ -117,31 +118,32 @@ class HopfieldNetwork(object):
 
             def index(index):
                 return {
-                    'A': [-1, -1, -1, 1],
-                    'C': [-1, -1, 1, -1],
-                    'D': [-1, -1, 1, 1],
-                    'G': [-1, 1, -1, -1],
-                    'H': [-1, 1, -1, 1],
-                    'I': [-1, 1, 1, -1],
-                    'K': [-1, 1, 1, 1],
-                    'M': [1, -1, -1, -1],
-                    'Q': [1, -1, -1, 1],
-                    'R': [1, -1, 1, -1],
-                    'S': [1, -1, 1, 1],
-                    'U': [1, 1, -1, -1],
-                    'W': [1, 1, -1, 1],
-                    'X': [1, 1, 1, -1],
+                    'A': 0,
+                    'C': 1,
+                    'D': 2,
+                    'G': 3,
+                    'H': 4,
+                    'I': 5,
+                    'K': 6,
+                    'M': 7,
+                    'Q': 8,
+                    'R': 9,
+                    'S': 10,
+                    'U': 11,
+                    'W': 12,
+                    'X': 13,
                 }[index]
 
             vector = []
             if char == 'N':
-                return [-1, -1, -1, -1]
-                # return [-1 for i in range(self.inputs_number / 7)]
+                return [-1 for i in range(self.inputs_number / 7)]
                 # return [0 for i in range(self.inputs_number / 7)]
                 # return [1 for i in range(self.inputs_number / 7)]
                 # return self.initialize_weights(self.inputs_number / 7)
             if char != '\n':
-                vector += index(char)
+                vector = [-1 for i in range(self.inputs_number / 7)]
+                vector[index(char)] = 1
+                # vector += index(char)
             return vector
 
         tests = []
@@ -185,7 +187,7 @@ class HopfieldNetwork(object):
 
     def train_network(self, patterns, times=1):
         for _ in range(times):
-            for i in len(self.neurons):
+            for i in range(len(self.neurons)):
                 for j in range((i + 1), len(self.neurons)):
                     if i == j:
                         continue
@@ -232,24 +234,24 @@ class HopfieldNetwork(object):
         for test in tests:
             neural_output = self.get_output(test[0])
             expected = vector_to_answer(test[1])
-            predicted_letter = vector_to_answer(neural_output[24:len(neural_output)])
+            predicted_letter = vector_to_answer(neural_output[84:len(neural_output)])
             if expected == predicted_letter:
                 predicted += 1
             if not to_save:
                 print "Test " + str(tested + 1)
                 print "-----"
                 print "Surroundings:"
-                print (vector_to_answer(test[0][:4]) + " " +
-                       vector_to_answer(test[0][4:8]) + " " +
-                       vector_to_answer(test[0][8:12]))
-                print (vector_to_answer(test[0][12:16]) + " " +
-                       vector_to_answer(test[0][16:20]) + " " +
-                       vector_to_answer(test[0][20:24]))
+                print (vector_to_answer(test[0][:14]) + " " +
+                       vector_to_answer(test[0][14:28]) + " " +
+                       vector_to_answer(test[0][28:42]))
+                print (vector_to_answer(test[0][42:56]) + " " +
+                       vector_to_answer(test[0][56:70]) + " " +
+                       vector_to_answer(test[0][70:84]))
                 nex = ""
                 npr = ""
-                if self.debug:
-                    nex = str(test[1])
-                    npr = str(neural_output[24:len(neural_output)])
+                # if self.debug:
+                #     nex = str(test[1])
+                #     npr = str(neural_output[84:len(neural_output)])
                 print "Expected:  " + expected + " " + nex
                 print "Predicted: " + predicted_letter + " " + npr
                 if expected == predicted_letter:

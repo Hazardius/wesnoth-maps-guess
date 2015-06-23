@@ -37,7 +37,7 @@ def main(argv):
     tests_file = "testsT.tst"
     out = "results.txt"
     seed = None
-    inputs_number = 28
+    inputs_number = 98
 
     try:
         # _ was args
@@ -60,11 +60,11 @@ def main(argv):
         elif opt in ('-o', "--out"):
             out = arg
         elif opt in ('-p', "--patterns"):
-            out = arg
+            patterns_file = arg
         elif opt in ('-s', "--seed"):
             seed = int(hashlib.sha1(arg).hexdigest(), 16) % 4294967295
         elif opt in ('-t', "--tests"):
-            out = arg
+            tests_file = arg
 
     # source = "".join(args)
 
