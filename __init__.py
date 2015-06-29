@@ -18,6 +18,7 @@ def usage():
     print "    --no-save  - don't save the results - only show them in console"
     print "    --out      - output file, default \"results.txt\""
     print "    --patterns - output file, default \"patternsT.pat\""
+    print "    --prob     - prob mode - patterns are given in probabilities"
     print "    --seed     - seed for RNG"
     print "    --tests    - output file, default \"testsT.tst\""
     print "    -d         - same as --debug"
@@ -33,6 +34,7 @@ def usage():
 def main(argv):
     debug = False
     save_res = True
+    prob = False
     patterns_file = "patternsT.pat"
     tests_file = "testsT.tst"
     out = "results.txt"
@@ -43,7 +45,7 @@ def main(argv):
         opts, _ = getopt.getopt(
             argv,
             "dhno:p:s:t:",
-            ["help", "debug", "no-save", "out=", "patterns=", "seed=", "tests="]
+            ["help", "debug", "no-save", "out=", "patterns=", "prob", "seed=", "tests="]
         )
     except getopt.GetoptError:
         usage()
@@ -60,12 +62,14 @@ def main(argv):
             out = arg
         elif opt in ('-p', "--patterns"):
             patterns_file = arg
+        elif opt in ("--prob"):
+            prob = True
         elif opt in ('-s', "--seed"):
             seed = int(hashlib.sha1(arg).hexdigest(), 16) % 4294967295
         elif opt in ('-t', "--tests"):
             tests_file = arg
 
-    HopfieldNetwork(inputs_number, patterns_file, tests_file, out, debug, save_res, seed)
+    HopfieldNetwork(inputs_number, patterns_file, tests_file, out, debug, save_res, seed, prob)
 
 
 if __name__ == '__main__':

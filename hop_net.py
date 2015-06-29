@@ -20,6 +20,23 @@ def vector_to_answer(vector):
                 answer_id = i
     return letter(answer_id)
 
+def find_max_letter(vector):
+
+    def letter(index):
+        return "ACDGHIKMQRSUWXN"[index]
+
+    if sum(vector) == -14:
+        return 'N'
+    max_let = -1
+    max_val = -1.0
+    for iterator in range(14):
+        if max_val < vector[iterator]:
+            max_val = vector[iterator]
+            max_let = iterator
+    if max_let == -1:
+        return 'N'
+    return letter(max_let)
+
 def letter_to_number(letter):
     return {
         'A': 0,
@@ -36,6 +53,7 @@ def letter_to_number(letter):
         'U': 11,
         'W': 12,
         'X': 13,
+        'N': 14,
     }[letter]
 
 
@@ -49,8 +67,10 @@ class HopfieldNetwork(object):
                  out="results.txt",
                  debug=False,
                  save_res=True,
-                 seed=None):
+                 seed=None,
+                 prob=False):
         self.debug = debug
+        self.prob = prob
         self.inputs_number = inputs_number
         self.patterns_file = patterns_file
         self.tests_file = tests_file
@@ -68,7 +88,10 @@ class HopfieldNetwork(object):
             self.neurons.append(self.create_neuron())
         if self.debug:
             print "3. Loading of patterns."
-        patterns = self.open_patterns_file(self.patterns_file)
+        if prob:
+            patterns = self.open_prob_patterns_file(self.patterns_file)
+        else:
+            patterns = self.open_patterns_file(self.patterns_file)
         if self.debug:
             print "4. Training."
         self.train_network(patterns)
@@ -88,9 +111,16 @@ class HopfieldNetwork(object):
         opened_file = codecs.open(dest_file, "w", "utf-8")
         opened_file.write(content)
 
-    def open_patterns_file(self, path):
-        """ Opening a file specified by a path. """
+    def open_prob_patterns_file(self, path):
+        patterns = []
+        with open("./patterns/" + path + "prob") as text_file:
+            for line in text_file:
+                if len(line) > 98:
+                    elems = [float(elem) for elem in line[:-1].split(' ')]
+                    patterns.append(elems)
+        return patterns
 
+    def open_patterns_file(self, path):
         def letter_2_vector(char):
             vector = []
             if char != '\n':
@@ -110,12 +140,10 @@ class HopfieldNetwork(object):
         return patterns
 
     def open_tests_file(self, path):
-        """ Opening a file specified by a path. """
-
         def letter_2_vector(char):
             vector = []
             if char == 'N':
-                return [-1 for _ in range(14)]
+                return [0 for _ in range(14)]
             if char != '\n':
                 vector = [-1 for _ in range(14)]
                 vector[letter_to_number(char)] = 1
@@ -206,13 +234,22 @@ class HopfieldNetwork(object):
         tested = 0
         predicted = 0
         results = ""
+        if not to_save:
+            counter_of_predictions = [0 for _ in range(15)]
+            def letter(index):
+                return "ACDGHIKMQRSUWXN"[index]
         for test in tests:
             neural_output = self.get_output(test[0])
             expected = vector_to_answer(test[1])
-            predicted_letter = vector_to_answer(neural_output[84:len(neural_output)])
+            predicted_letter = find_max_letter(neural_output[84:len(neural_output)])
+            # if self.prob:
+            #     predicted_letter = find_max_letter(neural_output[84:len(neural_output)])
+            # else:
+            #     predicted_letter = vector_to_answer(neural_output[84:len(neural_output)])
             if expected == predicted_letter:
                 predicted += 1
             if not to_save:
+                counter_of_predictions[letter_to_number(predicted_letter)] += 1
                 print "Test " + str(tested + 1)
                 print "-----"
                 print "Surroundings:"
@@ -249,4 +286,7 @@ class HopfieldNetwork(object):
             print "Tested:" + str(tested)
             print "Predicted: " + str(predicted)
             print "Successful predictions: " + str(predicted*100.0/tested) + "%"
+            print "----------"
+            for iterator in range(15):
+                print letter(iterator) + "\t" + str(counter_of_predictions[iterator])
         return results
