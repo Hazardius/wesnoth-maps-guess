@@ -25,6 +25,8 @@ def find_max_letter(vector):
     def letter(index):
         return "ACDGHIKMQRSUWXN"[index]
 
+    # Line for naive predition. Decomment only if making naive tests.
+    # return 'G'
     if sum(vector) == -14:
         return 'N'
     max_let = -1

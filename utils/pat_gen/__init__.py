@@ -16,8 +16,8 @@ def usage():
     print "    --debug    - run generator in debug mode"
     print "    --help     - show this message"
     print "    --map      - map file, default \"test.map\""
-    print "    --out      - output file, default \"results.txt\""
-    print "    --rn       - file with random numbers, default \"rnT.pat\""
+    print "    --out      - output file, default \"patternsT.pat\""
+    print "    --rn       - file with random numbers, default \"rnT.txt\""
     print "    -c         - same as --cons"
     print "    -d         - same as --debug"
     print "    -h         - same as --help"
@@ -65,9 +65,11 @@ def count_terrains(debug=False, out="patternsT.pat"):
                 letters_counter[letter_to_number(character)] += 1
     if debug:
         print "2. Printing the results."
+    all_tiles = sum(letters_counter)
     for iterator in range(14):
-        print letter(iterator) + "\t" + str(letters_counter[iterator])
-    print "Sum\t" + str(sum(letters_counter))
+        print (letter(iterator) + "\t" + str(letters_counter[iterator]) + "\t" +
+               str(100.0*letters_counter[iterator]/all_tiles))
+    print "Sum\t" + str(all_tiles)
 
 def open_rn_file(path):
     rns = []
