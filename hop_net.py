@@ -26,7 +26,7 @@ def find_max_letter(vector):
         return "ACDGHIKMQRSUWXN"[index]
 
     # Line for naive predition. Decomment only if making naive tests.
-    # return 'G'
+    # return 'A'
     if sum(vector) == -14:
         return 'N'
     max_let = -1
@@ -126,8 +126,8 @@ class HopfieldNetwork(object):
         def letter_2_vector(char):
             vector = []
             if char != '\n':
-                vector = [-1 for _ in range(14)]
-                vector[letter_to_number(char)] = 1
+                vector = [-1.0 for _ in range(14)]
+                vector[letter_to_number(char)] = 1.0
             return vector
 
         patterns = []
@@ -145,10 +145,10 @@ class HopfieldNetwork(object):
         def letter_2_vector(char):
             vector = []
             if char == 'N':
-                return [0 for _ in range(14)]
+                return [-0.95 for _ in range(14)]
             if char != '\n':
-                vector = [-1 for _ in range(14)]
-                vector[letter_to_number(char)] = 1
+                vector = [-1.0 for _ in range(14)]
+                vector[letter_to_number(char)] = 1.0
             return vector
 
         tests = []
@@ -161,6 +161,9 @@ class HopfieldNetwork(object):
                     if letter == ' ':
                         break
                     new_test = new_test + letter_2_vector(letter)
+                # for iterator in range(6):
+                #     new_test = new_test + letter_2_vector(line[iterator])
+                # new_test = new_test + [-1.0 for _ in range(14)]
                 expected = letter_2_vector(line[-2])
                 tests.append((new_test, expected))
         return tests
@@ -207,11 +210,11 @@ class HopfieldNetwork(object):
 
         def sigmoid(activation):
             if activation >= 0:
-                return 1
-            return -1
+                return 1.0
+            return -1.0
 
         i = np.random.randint(0, len(self.neurons))
-        activation = 0
+        activation = 0.0
         j = 0
         for neuron in self.neurons:
             if i == j:
@@ -223,7 +226,7 @@ class HopfieldNetwork(object):
         self.neurons[i].output = output
         return change
 
-    def get_output(self, pattern, evals=100):
+    def get_output(self, pattern, evals=256):
         iterating_nr = 0
         for neuron in self.neurons:
             neuron.output = pattern[iterating_nr]
@@ -236,10 +239,9 @@ class HopfieldNetwork(object):
         tested = 0
         predicted = 0
         results = ""
-        if not to_save:
-            counter_of_predictions = [0 for _ in range(15)]
-            def letter(index):
-                return "ACDGHIKMQRSUWXN"[index]
+        counter_of_predictions = [0 for _ in range(15)]
+        def letter(index):
+            return "ACDGHIKMQRSUWXN"[index]
         for test in tests:
             neural_output = self.get_output(test[0])
             expected = vector_to_answer(test[1])
@@ -250,8 +252,8 @@ class HopfieldNetwork(object):
             #     predicted_letter = vector_to_answer(neural_output[84:len(neural_output)])
             if expected == predicted_letter:
                 predicted += 1
+            counter_of_predictions[letter_to_number(predicted_letter)] += 1
             if not to_save:
-                counter_of_predictions[letter_to_number(predicted_letter)] += 1
                 print "Test " + str(tested + 1)
                 print "-----"
                 print "Surroundings:"
@@ -284,6 +286,9 @@ class HopfieldNetwork(object):
             results = end_info + "----------\n" + results
             if self.debug:
                 print "Successful predictions: " + str(predicted*100.0/tested) + "%"
+                print "----------"
+                for iterator in range(15):
+                    print letter(iterator) + "\t" + str(counter_of_predictions[iterator])
         else:
             print "Tested:" + str(tested)
             print "Predicted: " + str(predicted)

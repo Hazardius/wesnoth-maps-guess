@@ -13,11 +13,13 @@ def usage():
     print ""
     print "  Valid arguments are:"
     print ""
+    print "    --big-kn   - run generator in big knowledge mode"
     print "    --debug    - run generator in debug mode"
     print "    --help     - show this message"
     print "    --out      - output file, default \"tests1.tst\""
     print "    --patterns - patterns file, default \"patterns1.pat\""
     print "    --rn       - file with random numbers, default \"rn1.txt\""
+    print "    -b         - same as --big-kn"
     print "    -d         - same as --debug"
     print "    -h         - same as --help"
     print "    -o         - same as --out"
@@ -26,7 +28,7 @@ def usage():
     print ""
 
 
-def generate_tests(debug, out, patterns_file, rn_file):
+def generate_tests(debug, out, patterns_file, rn_file, big_kn):
     if debug:
         print "1. Loading random numbers from file."
     random_numbers = open_rn_file(rn_file)
@@ -37,7 +39,11 @@ def generate_tests(debug, out, patterns_file, rn_file):
         print "3. Prepare tests data."
     tests = []
     for iterator in range(len(random_numbers)):
-        nbrs = neighbours(neighb_nr(random_numbers[(iterator+1) % len(random_numbers)]),
+        if big_kn:
+            nbrnr = 6
+        else:
+            nbrnr = neighb_nr(random_numbers[(iterator+1) % len(random_numbers)])
+        nbrs = neighbours(nbrnr,
                           alignment(random_numbers[(iterator+2) % len(random_numbers)]))
         tests.append(gen_test(patterns[random_numbers[iterator]], nbrs))
     if debug:
@@ -115,6 +121,7 @@ def gen_test(random_pattern, neighbrs_list):
 
 def main(argv):
     debug = False
+    big_kn = False
     out = "tests1.tst"
     patterns_file = "patterns1.pat"
     rn_file = "rn1.txt"
@@ -122,8 +129,8 @@ def main(argv):
     try:
         opts, _ = getopt.getopt(
             argv,
-            "dho:p:r:",
-            ["help", "debug", "out=", "patterns=", "rn="]
+            "bdho:p:r:",
+            ["help", "debug", "big-kn", "out=", "patterns=", "rn="]
         )
     except getopt.GetoptError:
         usage()
@@ -132,6 +139,8 @@ def main(argv):
         if opt in ('-h', "--help"):
             usage()
             sys.exit()
+        elif opt in ('-b', "--big-kn"):
+            big_kn = True
         elif opt in ('-d', "--debug"):
             debug = True
         elif opt in ('-o', "--out"):
@@ -141,7 +150,7 @@ def main(argv):
         elif opt in ('-r', "--rn"):
             rn_file = arg
 
-    generate_tests(debug, out, patterns_file, rn_file)
+    generate_tests(debug, out, patterns_file, rn_file, big_kn)
 
 
 if __name__ == '__main__':

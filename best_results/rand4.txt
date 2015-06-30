@@ -1,0 +1,644 @@
+Tested:128
+Predicted: 71
+Successful predictions: 55.46875%
+----------
+Test number: 1
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 2
+Expected: R
+Predicted: A
+FAIL!
+----------
+Test number: 3
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 4
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 5
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 6
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 7
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 8
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 9
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 10
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 11
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 12
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 13
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 14
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 15
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 16
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 17
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 18
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 19
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 20
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 21
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 22
+Expected: R
+Predicted: A
+FAIL!
+----------
+Test number: 23
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 24
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 25
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 26
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 27
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 28
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 29
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 30
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 31
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 32
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 33
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 34
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 35
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 36
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 37
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 38
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 39
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 40
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 41
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 42
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 43
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 44
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 45
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 46
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 47
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 48
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 49
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 50
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 51
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 52
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 53
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 54
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 55
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 56
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 57
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 58
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 59
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 60
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 61
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 62
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 63
+Expected: R
+Predicted: A
+FAIL!
+----------
+Test number: 64
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 65
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 66
+Expected: R
+Predicted: A
+FAIL!
+----------
+Test number: 67
+Expected: C
+Predicted: A
+FAIL!
+----------
+Test number: 68
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 69
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 70
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 71
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 72
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 73
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 74
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 75
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 76
+Expected: G
+Predicted: G
+SUCCESS!
+----------
+Test number: 77
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 78
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 79
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 80
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 81
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 82
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 83
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 84
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 85
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 86
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 87
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 88
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 89
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 90
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 91
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 92
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 93
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 94
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 95
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 96
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 97
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 98
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 99
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 100
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 101
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 102
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 103
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 104
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 105
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 106
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 107
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 108
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 109
+Expected: M
+Predicted: A
+FAIL!
+----------
+Test number: 110
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 111
+Expected: R
+Predicted: A
+FAIL!
+----------
+Test number: 112
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 113
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 114
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 115
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 116
+Expected: W
+Predicted: A
+FAIL!
+----------
+Test number: 117
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 118
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 119
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 120
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 121
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 122
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 123
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 124
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 125
+Expected: H
+Predicted: A
+FAIL!
+----------
+Test number: 126
+Expected: A
+Predicted: A
+SUCCESS!
+----------
+Test number: 127
+Expected: G
+Predicted: A
+FAIL!
+----------
+Test number: 128
+Expected: W
+Predicted: A
+FAIL!
+----------

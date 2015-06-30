@@ -96,6 +96,10 @@ def open_map_file(path):
 
 
 def open_patterns_file(path):
+
+    def num2letter(index):
+        return "ACDGHIKMQRSUWXN"[index]
+
     prob_patterns = [[[0 for _ in range(14)] for _ in range(6)] for _ in range(14)]
     with open("./patterns/" + path) as text_file:
         for line in text_file:
@@ -106,15 +110,30 @@ def open_patterns_file(path):
                 prob_patterns[letter][mini_iter][letter_to_number(nlet)] += 1
                 mini_iter += 1
     nprob_patterns = []
+    letter_id = 0
     for row in prob_patterns:
+        is_valid_pattern = True
         one_set = []
         for neighbr in row:
             nsum = sum(neighbr)
             if nsum == 0:
-                one_set.append([-1.0 for _ in range(14)])
+                is_valid_pattern = False
+                break
             else:
-                multiplier = 1.0 / max(neighbr)
-                one_set.append([((neighbr[i] * multiplier)/nsum - 0.0) for i in range(14)])
+                max_id = 0
+                max_val = 0
+                for candidate in range(14):
+                    if max_val < neighbr[candidate]:
+                        max_id = candidate
+                        max_val = neighbr[candidate]
+                one_set.append(num2letter(max_id))
+                # Old version:
+                # multiplier = 1.0 / max(neighbr)
+                # one_set.append([((neighbr[i] * multiplier)/nsum - 0.0) for i in range(14)])
+        one_set.append(num2letter(letter_id))
+        letter_id += 1
+        if not is_valid_pattern:
+            continue
         nprob_patterns.append(one_set)
     return nprob_patterns
 
@@ -142,20 +161,24 @@ def save_patterns(patterns, prob_patterns, dest_file):
 
 def save_consolidated_patterns(prob_pat, dest_file):
     opened_file = codecs.open((dest_file + "prob"), "w", "utf-8")
-    iterator = 0
     for pattern in prob_pat:
-        line = ""
-        for field in pattern:
-            for prob in field:
-                line += str(prob) + " "
-        for sec_iter in range(14):
-            if sec_iter != iterator:
-                line += str(-1.0) + " "
-            else:
-                line += str(1.0) + " "
-        line = line[:-1] + '\n'
-        opened_file.write(line)
-        iterator += 1
+        patternasastring = ''.join(pattern)
+        opened_file.write(patternasastring + "\n")
+    # Old version
+    # iterator = 0
+    # for pattern in prob_pat:
+    #     line = ""
+    #     for field in pattern:
+    #         for prob in field:
+    #             line += str(prob) + " "
+    #     for sec_iter in range(14):
+    #         if sec_iter != iterator:
+    #             line += str(-1.0) + " "
+    #         else:
+    #             line += str(1.0) + " "
+    #     line = line[:-1] + '\n'
+    #     opened_file.write(line)
+    #     iterator += 1
 
 
 def letter_to_number(letter):
